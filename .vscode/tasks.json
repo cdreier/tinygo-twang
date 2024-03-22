@@ -1,0 +1,15 @@
+// .vscode/tasks.json
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "BuildDebugELF",
+          "type": "shell",
+          "command": "tinygo build -o debug.elf -opt=0 -target=pico .",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      }
+  ]
+}

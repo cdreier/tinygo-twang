@@ -1,0 +1,9 @@
+{
+  "go.toolsEnvVars": {
+    "GOOS": "linux",
+    "GOARCH": "arm",
+    "GOROOT": "/home/christiandreier/.cache/tinygo/goroot-f5e93a949410d5d2f5bff44ab1b20b4bd6e0c7fcdb4e8fc138205bf448f97c3d",
+    "GOFLAGS": "-tags=cortexm,baremetal,linux,arm,rp2040,rp,waveshare_rp2040_zero,tinygo,purego,math_big_pure_go,gc.conservative,scheduler.tasks,serial.usb"
+  },
+  "cortex-debug.variableUseNaturalFormat": true
+}
