@@ -31,7 +31,7 @@ func NewGame(length int) *Game {
 		colors:       colors,
 		entities:     []Entity{},
 		Player:       NewPlayer(length),
-		currentLevel: 8,
+		currentLevel: 0,
 	}
 
 	g.levels = []Level{
