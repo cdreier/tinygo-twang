@@ -35,10 +35,15 @@ func NewGame(length int) *Game {
 	}
 
 	g.levels = []Level{
-		NewLevelDebug(g),
+		// NewLevelDebug(g),
 		NewLevel1(g),
 		NewLevel2(g),
 		NewLevel3(g),
+		NewLevel4(g),
+		NewLevel5(g),
+		NewLevel6(g),
+		NewLevel7(g),
+		NewLevel8(g),
 	}
 	g.LoadLevel()
 	return g
