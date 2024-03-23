@@ -14,6 +14,5 @@ func (l *LevelDebug) Start() {
 	l.game.Player.index = 0
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))
-	l.game.AddEntity(NewWater(12, 50))
-	l.game.AddEntity(NewFire(10, 20))
+	l.game.AddEntity(NewWater(48, 10, -1))
 }

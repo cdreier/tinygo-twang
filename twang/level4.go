@@ -10,6 +10,7 @@ func NewLevel4(g *Game) *Level4 {
 	}
 }
 
+// introducing fire, no enemies
 func (l *Level4) Start() {
 	l.game.Player.index = 0
 	l.game.entities = []Entity{}

@@ -10,12 +10,17 @@ func NewLevel7(g *Game) *Level7 {
 	}
 }
 
+// other direction water, standing enemies
 func (l *Level7) Start() {
 	l.game.Player.index = 0
 	l.game.entities = []Entity{}
-	l.game.AddEntity(NewWater(21, 20))
-	spawner := NewEnemySpawn(l.game)
-	spawner.enemySpeed = 2
-	l.game.AddEntity(NewSpawn(len(l.game.colors)-1, 100, spawner))
+	l.game.AddEntity(NewWater(42, 10, -1))
+	l.game.AddEntity(NewStandingEnemy(15))
+	l.game.AddEntity(NewStandingEnemy(20))
+	l.game.AddEntity(NewStandingEnemy(25))
+	l.game.AddEntity(NewStandingEnemy(30))
+	l.game.AddEntity(NewStandingEnemy(35))
+	l.game.AddEntity(NewStandingEnemy(40))
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))
+
 }

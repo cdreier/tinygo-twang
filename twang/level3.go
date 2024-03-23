@@ -10,6 +10,7 @@ func NewLevel3(g *Game) *Level3 {
 	}
 }
 
+// enemies moving quickly
 func (l *Level3) Start() {
 	l.game.Player.index = 0
 	l.game.entities = []Entity{}

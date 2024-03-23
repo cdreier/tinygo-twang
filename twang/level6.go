@@ -10,9 +10,11 @@ func NewLevel6(g *Game) *Level6 {
 	}
 }
 
+// introducing water, one standing enemy behind the water
 func (l *Level6) Start() {
 	l.game.Player.index = 0
 	l.game.entities = []Entity{}
-	l.game.AddEntity(NewWater(36, 15))
+	l.game.AddEntity(NewWater(21, 15, 1))
+	l.game.AddEntity(NewStandingEnemy(15 + 21 + 5))
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))
 }
