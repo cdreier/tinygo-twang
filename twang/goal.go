@@ -16,13 +16,13 @@ func (g *Goal) Update() {}
 
 func (g *Goal) Render(index int, colors []color.RGBA) bool {
 	if index == g.index {
-		colors[index] = color.RGBA{0xff, 0xff, 0xff, 0xff}
+		colors[index] = colorGoal
 		return true
 	}
 	return false
 }
 
-func (g *Goal) Intersect(p *Game) {
+func (g *Goal) Intersection(p *Game) {
 	if g.index == p.Player.index {
 		p.NextLevel()
 	}

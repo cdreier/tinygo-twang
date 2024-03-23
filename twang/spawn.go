@@ -35,4 +35,4 @@ func (s *Spawn) Render(index int, colors []color.RGBA) bool {
 	return false
 }
 
-func (s *Spawn) Intersect(p *Game) {}
+func (s *Spawn) Intersection(p *Game) {}

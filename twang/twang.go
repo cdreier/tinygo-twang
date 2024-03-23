@@ -16,7 +16,7 @@ type Game struct {
 type Entity interface {
 	Update()
 	Render(index int, colors []color.RGBA) bool
-	Intersect(p *Game)
+	Intersection(p *Game)
 }
 
 type Level interface {
@@ -35,6 +35,7 @@ func NewGame(length int) *Game {
 	}
 
 	g.levels = []Level{
+		NewLevelDebug(g),
 		NewLevel1(g),
 		NewLevel2(g),
 		NewLevel3(g),
@@ -57,14 +58,16 @@ func (g *Game) Render(r Renderer) {
 		}
 
 		entityHandled := false
-		for _, e := range g.entities {
-			// do not overwrite handle if one handled
-			if tmp := e.Render(i, g.colors); tmp && !entityHandled {
-				entityHandled = true
+		if !playerHandled {
+			for _, e := range g.entities {
+				// do not overwrite handle if one handled
+				if tmp := e.Render(i, g.colors); tmp && !entityHandled {
+					entityHandled = true
+				}
 			}
 		}
 		if !playerHandled && !entityHandled {
-			g.colors[i] = color.RGBA{0x00, 0x00, 0x00, 0xff}
+			g.colors[i] = colorOff
 		}
 	}
 	r.WriteColors(g.colors)
@@ -73,7 +76,7 @@ func (g *Game) Render(r Renderer) {
 func (g *Game) Update() {
 	for _, e := range g.entities {
 		e.Update()
-		e.Intersect(g)
+		e.Intersection(g)
 	}
 }
 
@@ -97,7 +100,7 @@ func (g *Game) LoadLevel() {
 func (g *Game) Retry() {
 	g.entities = []Entity{}
 	g.animationRunning = true
-	retryTail := NewTail(color.RGBA{0xff, 0x00, 0x00, 0xff}, g.Player.index, func() {
+	retryTail := NewTail(colorEnemy, g.Player.index, func() {
 		g.animationRunning = false
 		g.LoadLevel()
 	})
@@ -107,7 +110,7 @@ func (g *Game) Retry() {
 func (g *Game) NextLevel() {
 	g.entities = []Entity{}
 	g.animationRunning = true
-	retryTail := NewTail(color.RGBA{0x00, 0xff, 0x00, 0xff}, g.Player.index, func() {
+	retryTail := NewTail(colorPlayer, g.Player.index, func() {
 		g.animationRunning = false
 		if g.currentLevel+1 < len(g.levels) {
 			g.currentLevel++

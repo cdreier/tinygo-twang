@@ -40,4 +40,4 @@ func (t *Tail) Render(index int, colors []color.RGBA) bool {
 	return false
 }
 
-func (t *Tail) Intersect(p *Game) {}
+func (t *Tail) Intersection(p *Game) {}

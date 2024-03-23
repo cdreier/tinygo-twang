@@ -47,19 +47,19 @@ func (e *Enemy) Update() {
 	e.speedCount++
 }
 
-func (e *Enemy) Intersect(g *Game) {
+func (e *Enemy) Intersection(g *Game) {
 	if inRange(e.index, g.Player.index-g.Player.attackRange, g.Player.index+g.Player.attackRange) {
-		if e.index == g.Player.index {
-			g.Retry()
-		} else if g.Player.attack {
+		if g.Player.attack {
 			g.RemoveEntity(e)
+		} else if e.index <= g.Player.index {
+			g.Retry()
 		}
 	}
 }
 
 func (e *Enemy) Render(index int, colors []color.RGBA) bool {
 	if index == e.index {
-		colors[index] = color.RGBA{0xff, 0x00, 0x00, 0xff}
+		colors[index] = colorEnemy
 		return true
 	}
 	return false

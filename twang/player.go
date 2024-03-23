@@ -35,12 +35,12 @@ func (p *Player) Attack(onoff bool) {
 func (p *Player) Render(index int, colors []color.RGBA) bool {
 
 	if p.attack && inRange(index, p.index-p.attackRange, p.index+p.attackRange) {
-		colors[minMax(index, 0, p.world-1)] = color.RGBA{0xff, 0x00, 0xff, 0xff}
+		colors[minMax(index, 0, p.world-1)] = colorPlayerAttack
 		return true
 	}
 
 	if index == p.index {
-		colors[index] = color.RGBA{0x00, 0xff, 0x00, 0xff}
+		colors[index] = colorPlayer
 		return true
 	}
 	return false
