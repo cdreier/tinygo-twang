@@ -12,7 +12,7 @@ func NewLevel8(g *Game) *Level8 {
 
 // water with moving enemies towards the player
 func (l *Level8) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewWater(21, 20, 1))
 	spawner := NewEnemySpawn(l.game)

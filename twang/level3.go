@@ -12,10 +12,15 @@ func NewLevel3(g *Game) *Level3 {
 
 // enemies moving quickly
 func (l *Level3) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	spawner := NewEnemySpawn(l.game)
 	spawner.enemySpeed = 2
-	l.game.AddEntity(NewSpawn(len(l.game.colors)-1, 40, spawner))
+
+	spawner2 := NewEnemySpawn(l.game)
+	spawner2.enemySpeed = 2
+	spawner2.enemyDirection = 1
+	l.game.AddEntity(NewSpawn(len(l.game.colors)/2, 40, spawner))
+	l.game.AddEntity(NewSpawn(len(l.game.colors)/2, 40, spawner2))
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))
 }

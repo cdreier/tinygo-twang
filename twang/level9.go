@@ -12,7 +12,7 @@ func NewLevel9(g *Game) *Level9 {
 
 // stronger water, fire rigth behind it
 func (l *Level9) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	water := NewWater(18, 15, 1)
 	water.power = 3

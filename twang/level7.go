@@ -12,7 +12,7 @@ func NewLevel7(g *Game) *Level7 {
 
 // other direction water, standing enemies
 func (l *Level7) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewWater(42, 10, -1))
 	l.game.AddEntity(NewStandingEnemy(15))

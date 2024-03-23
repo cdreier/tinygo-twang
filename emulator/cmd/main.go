@@ -5,7 +5,8 @@ import (
 	"log"
 	"sync"
 	"time"
-	"tinygoleds/twang"
+
+	"github.com/cdreier/tinygo-twang/twang"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
@@ -62,6 +63,18 @@ func main() {
 	ebiten.SetWindowTitle("LEDs")
 
 	tg := twang.NewGame(60)
+	tg.LoadLevels([]twang.Level{
+		twang.NewLevelDebug(tg),
+		twang.NewLevel1(tg),
+		twang.NewLevel2(tg),
+		twang.NewLevel3(tg),
+		twang.NewLevel4(tg),
+		twang.NewLevel5(tg),
+		twang.NewLevel6(tg),
+		twang.NewLevel7(tg),
+		twang.NewLevel8(tg),
+		twang.NewLevel9(tg),
+	})
 
 	g := &Game{
 		mtx:   &sync.Mutex{},

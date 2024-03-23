@@ -34,20 +34,16 @@ func NewGame(length int) *Game {
 		currentLevel: 0,
 	}
 
-	g.levels = []Level{
-		// NewLevelDebug(g),
-		NewLevel1(g),
-		NewLevel2(g),
-		NewLevel3(g),
-		NewLevel4(g),
-		NewLevel5(g),
-		NewLevel6(g),
-		NewLevel7(g),
-		NewLevel8(g),
-		NewLevel9(g),
-	}
-	g.LoadLevel()
 	return g
+}
+
+func (g *Game) LoadLevels(levels []Level) {
+	g.levels = levels
+	g.StartLevel()
+}
+
+func (g *Game) StartLevel() {
+	g.levels[g.currentLevel].Start()
 }
 
 type Renderer interface {
@@ -99,16 +95,12 @@ func (g *Game) RemoveEntity(e Entity) {
 	}
 }
 
-func (g *Game) LoadLevel() {
-	g.levels[g.currentLevel].Start()
-}
-
 func (g *Game) Retry() {
 	g.entities = []Entity{}
 	g.animationRunning = true
 	retryTail := NewTail(colorEnemy, g.Player.index, func() {
 		g.animationRunning = false
-		g.LoadLevel()
+		g.StartLevel()
 	})
 	g.AddEntity(retryTail)
 }
@@ -116,14 +108,14 @@ func (g *Game) Retry() {
 func (g *Game) NextLevel() {
 	g.entities = []Entity{}
 	g.animationRunning = true
-	retryTail := NewTail(colorPlayer, g.Player.index, func() {
+	successTail := NewTail(colorPlayer, g.Player.index, func() {
 		g.animationRunning = false
 		if g.currentLevel+1 < len(g.levels) {
 			g.currentLevel++
 		} else {
 			g.currentLevel = 0
 		}
-		g.LoadLevel()
+		g.StartLevel()
 	})
-	g.AddEntity(retryTail)
+	g.AddEntity(successTail)
 }

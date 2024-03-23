@@ -12,7 +12,7 @@ func NewLevel5(g *Game) *Level5 {
 
 // moving enemies, including fire
 func (l *Level5) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewSpawn(len(l.game.colors)-1, 100, NewEnemySpawn(l.game)))
 	l.game.AddEntity(NewFire(5, 10))

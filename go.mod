@@ -1,4 +1,4 @@
-module tinygoleds
+module github.com/cdreier/tinygo-twang
 
 go 1.22
 

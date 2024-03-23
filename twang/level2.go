@@ -12,7 +12,7 @@ func NewLevel2(g *Game) *Level2 {
 
 // enemies moving slowly
 func (l *Level2) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewSpawn(len(l.game.colors)-1, 100, NewEnemySpawn(l.game)))
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))

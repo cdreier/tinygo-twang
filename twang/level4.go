@@ -12,7 +12,7 @@ func NewLevel4(g *Game) *Level4 {
 
 // introducing fire, no enemies
 func (l *Level4) Start() {
-	l.game.Player.index = 0
+	l.game.Player.Reset()
 	l.game.entities = []Entity{}
 	l.game.AddEntity(NewFire(10, 25))
 	l.game.AddEntity(NewGoal(len(l.game.colors) - 1))

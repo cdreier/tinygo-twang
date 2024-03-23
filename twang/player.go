@@ -32,6 +32,11 @@ func (p *Player) Attack(onoff bool) {
 	p.attack = onoff
 }
 
+func (p *Player) Reset() {
+	p.index = 0
+	p.attackRange = 2
+}
+
 func (p *Player) Render(index int, colors []color.RGBA) bool {
 
 	if p.attack && inRange(index, p.index-p.attackRange, p.index+p.attackRange) {

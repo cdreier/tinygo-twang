@@ -4,7 +4,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygoleds/twang"
+	"github.com/cdreier/tinygo-twang/twang"
 
 	"tinygo.org/x/drivers/ws2812"
 )
@@ -30,6 +30,18 @@ func main() {
 	var middleX uint16 = 65534 / 2
 	var threshold uint16 = 2000
 	game := twang.NewGame(leds)
+	game.LoadLevels([]twang.Level{
+		// NewLevelDebug(g),
+		twang.NewLevel1(game),
+		twang.NewLevel2(game),
+		twang.NewLevel3(game),
+		twang.NewLevel4(game),
+		twang.NewLevel5(game),
+		twang.NewLevel6(game),
+		twang.NewLevel7(game),
+		twang.NewLevel8(game),
+		twang.NewLevel9(game),
+	})
 
 	for {
 
