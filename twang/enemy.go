@@ -8,6 +8,7 @@ type Enemy struct {
 	index      int
 	speed      int // every x updates, player speed is 1, higher is slower
 	speedCount int // every x updates, player speed is 1, higher is slower
+	standing   bool
 }
 
 func NewEnemy(start int) *Enemy {
@@ -15,6 +16,13 @@ func NewEnemy(start int) *Enemy {
 		index:      start,
 		speed:      5,
 		speedCount: 0,
+	}
+}
+
+func NewStandingEnemy(start int) *Enemy {
+	return &Enemy{
+		index:    start,
+		standing: true,
 	}
 }
 
@@ -41,6 +49,9 @@ func (e *EnemySpawn) Spawn(start int) {
 }
 
 func (e *Enemy) Update() {
+	if e.standing {
+		return
+	}
 	if e.speedCount%e.speed == 0 {
 		e.index = max(e.index-1, 0)
 	}
