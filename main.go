@@ -31,7 +31,7 @@ func main() {
 	var threshold uint16 = 2000
 	game := twang.NewGame(leds)
 	game.LoadLevels([]twang.Level{
-		// NewLevelDebug(g),
+		// twang.NewLevelDebug(game),
 		twang.NewLevel1(game),
 		twang.NewLevel2(game),
 		twang.NewLevel3(game),
