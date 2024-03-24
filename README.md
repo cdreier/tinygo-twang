@@ -6,7 +6,9 @@ after short google searh for "1D led games", the game is called `twang`  https:/
 
 that beeing said, i decided to write my own `twang` in go, but with the limitations of tinygo in mind
 
-currently i am testing with a 1 meter, 60 led strip, but you can easily adjust it to much longer strips
+currently i am testing with a 1 meter, 60 led strip, but you can easily adjust it to much longer
+
+![emulator](images/tinygotwang_sm.gif)
 
 ## entities
 
