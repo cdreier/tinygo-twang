@@ -28,7 +28,7 @@ func main() {
 	})
 
 	var middleX uint16 = 65534 / 2
-	var threshold uint16 = 2000
+	var threshold uint16 = 3000
 	game := twang.NewGame(leds)
 	game.LoadLevels([]twang.Level{
 		// twang.NewLevelDebug(game),
@@ -41,6 +41,8 @@ func main() {
 		twang.NewLevel7(game),
 		twang.NewLevel8(game),
 		twang.NewLevel9(game),
+		twang.NewLevel10(game),
+		twang.NewLevel11(game),
 	})
 
 	for {

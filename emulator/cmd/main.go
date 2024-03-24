@@ -64,7 +64,9 @@ func main() {
 
 	tg := twang.NewGame(60)
 	tg.LoadLevels([]twang.Level{
-		twang.NewLevelDebug(tg),
+		// twang.NewLevelDebug(tg),
+		twang.NewLevel11(tg),
+		twang.NewLevel10(tg),
 		twang.NewLevel1(tg),
 		twang.NewLevel2(tg),
 		twang.NewLevel3(tg),
