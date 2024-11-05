@@ -23,14 +23,14 @@ type Level interface {
 	Start()
 }
 
-func NewGame(length int) *Game {
+func NewGame(length int, p *Player) *Game {
 
 	colors := make([]color.RGBA, length)
 
 	g := &Game{
 		colors:       colors,
 		entities:     []Entity{},
-		Player:       NewPlayer(length),
+		Player:       p,
 		currentLevel: 0,
 	}
 
@@ -55,7 +55,7 @@ func (g *Game) Render(r Renderer) {
 	// normal render loop only when interaction is allowed
 	for i := range g.colors {
 		playerHandled := false
-		if !g.animationRunning {
+		if !g.animationRunning && g.Player != nil {
 			playerHandled = g.Player.Render(i, g.colors)
 		}
 
@@ -95,10 +95,17 @@ func (g *Game) RemoveEntity(e Entity) {
 	}
 }
 
+func playerIndex(p *Player) int {
+	if p == nil {
+		return 0
+	}
+	return p.index
+}
+
 func (g *Game) Retry() {
 	g.entities = []Entity{}
 	g.animationRunning = true
-	retryTail := NewTail(colorEnemy, g.Player.index, func() {
+	retryTail := NewTail(colorEnemy, playerIndex(g.Player), func() {
 		g.animationRunning = false
 		g.StartLevel()
 	})
@@ -108,7 +115,7 @@ func (g *Game) Retry() {
 func (g *Game) NextLevel() {
 	g.entities = []Entity{}
 	g.animationRunning = true
-	successTail := NewTail(colorPlayer, g.Player.index, func() {
+	successTail := NewTail(colorPlayer, playerIndex(g.Player), func() {
 		g.animationRunning = false
 		if g.currentLevel+1 < len(g.levels) {
 			g.currentLevel++

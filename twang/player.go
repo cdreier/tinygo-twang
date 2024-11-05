@@ -11,6 +11,7 @@ type Player struct {
 	attackRange int
 }
 
+// TODO make player and interface
 func NewPlayer(world int) *Player {
 	return &Player{
 		world:       world,

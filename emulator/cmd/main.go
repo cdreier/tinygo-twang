@@ -62,7 +62,7 @@ func main() {
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowTitle("LEDs")
 
-	tg := twang.NewGame(60)
+	tg := twang.NewGame(60, twang.NewPlayer(60))
 	tg.LoadLevels([]twang.Level{
 		// twang.NewLevelDebug(tg),
 		twang.NewLevel11(tg),
